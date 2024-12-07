@@ -1,0 +1,12 @@
+name: treinamento-front
+
+services:
+  postgres:
+    container_name: treinamento-front-pg
+    image: postgres:16.0-alpine3.18
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=treinamento-front
