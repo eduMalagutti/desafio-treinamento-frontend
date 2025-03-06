@@ -1,9 +1,10 @@
+import { Public } from '@/auth/decorators/public.decorator';
 import { Body, Controller, HttpCode, Post, UsePipes } from '@nestjs/common';
 import { ZodValidationPipe } from 'src/http/pipes/zod-validation-pipe';
 import {
   CreateUserBodySchema,
   createUserBodySchema,
-  UserControllerResponse,
+  UserDTO,
 } from 'src/http/schemas/user-schemas';
 import { CreateUserService } from 'src/services/user/create-user.service';
 
@@ -11,13 +12,14 @@ import { CreateUserService } from 'src/services/user/create-user.service';
 export class CreateUserController {
   constructor(private createUserService: CreateUserService) {}
 
+  @Public()
   @Post()
   @HttpCode(201)
   @UsePipes(new ZodValidationPipe(createUserBodySchema))
   async handle(
     @Body()
     { name, email, password }: CreateUserBodySchema,
-  ): Promise<UserControllerResponse> {
+  ): Promise<UserDTO> {
     const response = await this.createUserService.execute({
       name,
       email,

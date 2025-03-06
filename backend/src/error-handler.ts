@@ -1,4 +1,4 @@
-import { ArgumentsHost, Catch } from '@nestjs/common';
+import { ArgumentsHost, Catch, HttpException, UnauthorizedException } from '@nestjs/common';
 import { ApiError } from './services/errors/api-error';
 
 @Catch(ApiError)

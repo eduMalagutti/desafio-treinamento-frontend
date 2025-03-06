@@ -12,28 +12,28 @@ import { CreateUserController } from './controllers/user/create-user.controller'
 import { CreateUserService } from 'src/services/user/create-user.service';
 import { GetUserByIdController } from './controllers/user/get-user-by-id.controller';
 import { GetUserByIdService } from 'src/services/user/get-user-by-id.service';
+import { AuthController } from './controllers/auth/login.controller';
+import { AuthService } from 'src/services/auth/auth-service';
 
 @Module({
   imports: [DatabaseModule],
   controllers: [
-    // Task
     CreateTaskController,
     DeleteTaskController,
     ListTasksByUserIdController,
     UpdateTaskController,
-    // User
     CreateUserController,
     GetUserByIdController,
+    AuthController,
   ],
   providers: [
-    // Task
     CreateTaskService,
     DeleteTaskService,
     ListTasksByUserIdService,
     UpdateTaskService,
-    // User
     CreateUserService,
     GetUserByIdService,
+    AuthService,
   ],
 })
 export class HttpModule {}

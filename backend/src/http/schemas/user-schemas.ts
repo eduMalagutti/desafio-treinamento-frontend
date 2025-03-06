@@ -13,7 +13,7 @@ export const getUserByIdParamSchema = z.object({
 export type CreateUserBodySchema = z.infer<typeof createUserBodySchema>
 export type GetUserByIdParamSchema = z.infer<typeof getUserByIdParamSchema>
 
-export type UserControllerResponse = {
+export type UserDTO = {
   id: string
   name: string
   email: string

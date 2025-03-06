@@ -8,7 +8,7 @@ export type CreateTask = {
 
 export type UpdateTask = {
   id: string;
-  finishedAt: Date;
+  finishedAt: Date | null;
 };
 
 export abstract class TasksRepository {

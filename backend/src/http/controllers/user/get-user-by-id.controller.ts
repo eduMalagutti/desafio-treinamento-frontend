@@ -3,7 +3,7 @@ import { ZodValidationPipe } from 'src/http/pipes/zod-validation-pipe';
 import {
   getUserByIdParamSchema,
   GetUserByIdParamSchema,
-  UserControllerResponse,
+  UserDTO,
 } from 'src/http/schemas/user-schemas';
 import { GetUserByIdService } from 'src/services/user/get-user-by-id.service';
 
@@ -14,7 +14,7 @@ export class GetUserByIdController {
   @Get()
   @HttpCode(200)
   @UsePipes(new ZodValidationPipe(getUserByIdParamSchema))
-  async handle(@Param() { id }: GetUserByIdParamSchema) : Promise<UserControllerResponse>{
+  async handle(@Param() { id }: GetUserByIdParamSchema) : Promise<UserDTO>{
     const response = await this.getUserByIdService.execute({ id });
 
     return {

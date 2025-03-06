@@ -1,12 +1,12 @@
-import { Injectable } from "@nestjs/common";
-import { User } from "@prisma/client";
-import { UsersRepository } from "src/database/contracts/contract-users-repository";
-import { ResourceAlreadyExistsError } from "../errors/resource-already-exists-error";
+import { Injectable } from '@nestjs/common';
+import { UsersRepository } from 'src/database/contracts/contract-users-repository';
+import { ResourceAlreadyExistsError } from '../errors/resource-already-exists-error';
+import * as bcrypt from 'bcrypt';
 
 type CreateUserServiceRequest = {
   name: string;
   email: string;
-  password: string
+  password: string;
 };
 
 type CreateUserServiceResponse = {
@@ -22,23 +22,26 @@ export class CreateUserService {
   async execute({
     name,
     email,
-    password
+    password,
   }: CreateUserServiceRequest): Promise<CreateUserServiceResponse> {
     const userWithSameEmail = await this.usersRepository.findByEmail(email);
     if (userWithSameEmail) {
       throw new ResourceAlreadyExistsError('Users email');
     }
 
+    const saltRounds = 10;
+    const encryptedPassword = await bcrypt.hash(password, 10);
+
     const user = await this.usersRepository.create({
       name,
       email,
-      password
+      password: encryptedPassword,
     });
 
     return {
       id: user.id,
       name: user.name,
-      email: user.email
+      email: user.email,
     };
   }
 }
