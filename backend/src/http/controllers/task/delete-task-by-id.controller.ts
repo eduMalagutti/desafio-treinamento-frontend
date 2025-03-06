@@ -1,10 +1,10 @@
 import { Controller, Delete, Param, HttpCode } from '@nestjs/common';
-import { DeleteTaskService } from '../../services/delete-task.service';
-import { ZodValidationPipe } from '../pipes/zod-validation-pipe';
+import { DeleteTaskService } from '../../../services/task/delete-task.service';
+import { ZodValidationPipe } from '../../pipes/zod-validation-pipe';
 import {
   DeleteTaskParamSchema,
   deleteTaskParamSchema,
-} from '../schemas/task-schemas';
+} from '../../schemas/task-schemas';
 
 const paramValidationPipe = new ZodValidationPipe(deleteTaskParamSchema);
 

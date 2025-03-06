@@ -40,7 +40,9 @@ export class PrismaTasksRepository implements TasksRepository {
     });
   }
 
-  async findMany(): Promise<Task[]> {
-    return await this.prismaService.task.findMany();
+  async findMany(userId: string): Promise<Task[]> {
+    return await this.prismaService.task.findMany({
+      where: { userId },
+    });
   }
 }

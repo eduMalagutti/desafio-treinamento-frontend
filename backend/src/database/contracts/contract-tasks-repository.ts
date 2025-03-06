@@ -3,6 +3,7 @@ import { Task } from '@prisma/client';
 export type CreateTask = {
   name: string;
   description: string;
+  userId: string;
 };
 
 export type UpdateTask = {
@@ -16,5 +17,5 @@ export abstract class TasksRepository {
   abstract delete(id: string): Promise<void>;
   abstract findById: (id: string) => Promise<Task | null>;
   abstract findByName: (name: string) => Promise<Task | null>;
-  abstract findMany: () => Promise<Task[]>;
+  abstract findMany: (userId: string) => Promise<Task[]>;
 }

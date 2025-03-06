@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ResourceNotFoundError } from './errors/resource-not-found-error';
-import { TasksRepository } from '../database/contracts/contract-tasks-repository';
+import { ResourceNotFoundError } from '../errors/resource-not-found-error';
+import { TasksRepository } from '../../database/contracts/contract-tasks-repository';
 
 type DeleteTaskServiceRequest = {
   id: string;

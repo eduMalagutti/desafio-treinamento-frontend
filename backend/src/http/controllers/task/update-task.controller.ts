@@ -1,12 +1,7 @@
-import { Body, Controller, HttpCode, Param, Put } from '@nestjs/common';
-import { ZodValidationPipe } from '../pipes/zod-validation-pipe';
-import { UpdateTaskService } from '../../services/update-task.service';
-import {
-  UpdateTaskParamSchema,
-  UpdateTaskBodySchema,
-  updateTaskParamSchema,
-  updateTaskBodySchema,
-} from '../schemas/task-schemas';
+import { Body, Controller, HttpCode, Param, Put } from "@nestjs/common";
+import { ZodValidationPipe } from "src/http/pipes/zod-validation-pipe";
+import { UpdateTaskBodySchema, updateTaskBodySchema, UpdateTaskParamSchema, updateTaskParamSchema } from "src/http/schemas/task-schemas";
+import { UpdateTaskService } from "src/services/task/update-task.service";
 
 const paramValidationPipe = new ZodValidationPipe(updateTaskParamSchema);
 const bodyValidationPipe = new ZodValidationPipe(updateTaskBodySchema);

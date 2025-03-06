@@ -1,41 +1,34 @@
 import { z } from 'zod';
 
-const createTaskBodySchema = z.object({
+export const createTaskBodySchema = z.object({
   name: z.string(),
   description: z.string(),
+  userId: z.string().uuid(),
 });
 
-const updateTaskParamSchema = z.object({
+export const updateTaskParamSchema = z.object({
   id: z.string().uuid(),
 });
 
-const updateTaskBodySchema = z.object({
+export const updateTaskBodySchema = z.object({
   isFinished: z.boolean(),
 });
 
-const deleteTaskParamSchema = z.object({
+export const deleteTaskParamSchema = z.object({
   id: z.string().uuid(),
 });
 
-const getTaskByIdParamSchema = z.object({
+export const getTaskByIdParamSchema = z.object({
   id: z.string().uuid(),
 });
 
-type CreateTaskBodySchema = z.infer<typeof createTaskBodySchema>;
-type UpdateTaskParamSchema = z.infer<typeof updateTaskParamSchema>;
-type UpdateTaskBodySchema = z.infer<typeof updateTaskBodySchema>;
-type DeleteTaskParamSchema = z.infer<typeof deleteTaskParamSchema>;
-type GetTaskByIdParamSchema = z.infer<typeof getTaskByIdParamSchema>;
+export const listTasksByUserIdParamSchema = z.object({
+  userId: z.string().uuid(),
+})
 
-export {
-  createTaskBodySchema,
-  updateTaskParamSchema,
-  updateTaskBodySchema,
-  deleteTaskParamSchema,
-  getTaskByIdParamSchema,
-  CreateTaskBodySchema,
-  UpdateTaskParamSchema,
-  UpdateTaskBodySchema,
-  DeleteTaskParamSchema,
-  GetTaskByIdParamSchema,
-};
+export type CreateTaskBodySchema = z.infer<typeof createTaskBodySchema>;
+export type UpdateTaskParamSchema = z.infer<typeof updateTaskParamSchema>;
+export type UpdateTaskBodySchema = z.infer<typeof updateTaskBodySchema>;
+export type DeleteTaskParamSchema = z.infer<typeof deleteTaskParamSchema>;
+export type GetTaskByIdParamSchema = z.infer<typeof getTaskByIdParamSchema>;
+export type ListTasksByUserIdParamSchema = z.infer<typeof listTasksByUserIdParamSchema>;

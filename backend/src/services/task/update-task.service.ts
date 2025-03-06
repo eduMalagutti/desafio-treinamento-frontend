@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Task } from '@prisma/client';
-import { TasksRepository } from '../database/contracts/contract-tasks-repository';
+import { TasksRepository } from '../../database/contracts/contract-tasks-repository';
 
 type UpdateTaskServiceRequest = {
   id: string;
